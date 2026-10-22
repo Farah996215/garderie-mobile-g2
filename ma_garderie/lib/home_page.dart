@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'menu_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -72,13 +73,13 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      // --- Contenu : titre de section "Menus du jour" ---
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
+      // --- Contenu : titre de section + ListView ---
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: Text(
               'Menus du jour',
               style: TextStyle(
                 fontSize: 24,
@@ -86,13 +87,35 @@ class HomePage extends StatelessWidget {
                 color: Colors.deepOrange,
               ),
             ),
-            SizedBox(height: 12),
-            Text(
-              'Retrouvez ici les menus proposés aujourd\'hui.',
-              style: TextStyle(fontSize: 16, color: Colors.black54),
+          ),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              itemCount: menusDuJour.length,
+              itemBuilder: (context, index) {
+                final menu = menusDuJour[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 6),
+                  elevation: 2,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.deepOrange.shade50,
+                      child: Text(
+                        menu.icone,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    title: Text(
+                      menu.titre,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(menu.description),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
 
       // --- Floating Action Button ---
