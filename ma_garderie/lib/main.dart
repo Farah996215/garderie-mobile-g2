@@ -21,24 +21,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// Page principale vers laquelle on transite après le splash
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ma Garderie'),
-        backgroundColor: Colors.deepOrange,
-      ),
-      body: const Center(
-        child: Text(
-          'Page principale',
-          style: TextStyle(fontSize: 22),
-        ),
-      ),
-    );
-  }
-}
